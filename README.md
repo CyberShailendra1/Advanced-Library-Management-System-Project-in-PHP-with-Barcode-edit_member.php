@@ -75,7 +75,7 @@ Parameter: firstname (POST)
 **Result — `admin` table dumped again via a completely different (UPDATE-context) injection point** — confirms the vulnerability class is systemic across the codebase, not a one-off.
 
 ### Proof Screenshot
-![SQL Injection Confirmation - Report 3](Screenshot/3_report.png)
+![SQL Injection Confirmation - Report 3](3_report.png)
 
 ### Raw Verification Log
 - Full sqlmap output log: [log](log)
